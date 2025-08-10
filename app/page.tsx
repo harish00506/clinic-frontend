@@ -21,7 +21,7 @@ export default function LoginPage() {
     setError("");
 
     try {
-      const res = await fetch("http://localhost:3001/auth/login", {
+      const res = await fetch("http://localhost:5000/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(credentials),
@@ -34,6 +34,7 @@ export default function LoginPage() {
 
       const data = await res.json();
       localStorage.setItem("access_token", data.access_token);
+      localStorage.setItem("isAuthenticated", "true");
 
       router.push("/dashboard");
     } catch (err: any) {
